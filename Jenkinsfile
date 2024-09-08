@@ -1,8 +1,9 @@
 node(){
 	environment {
-    MAVEN_HOME = tool 'Maven'
-    JAVA_HOME = tool 'JDK 21'
-}
+        MAVEN_HOME = tool name: 'Maven', type: 'maven'
+        JAVA_HOME = tool name: 'JDK 21', type: 'jdk'
+        PATH = "${MAVEN_HOME}/bin:${PATH}"            
+    }
 	stage('Code Checkout'){
 		checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'bfa38064-13a6-4cd8-9b15-afa325457114', url: 'git@github.com:vrusalovskaya/jenkinsTest.git']])
 	}
@@ -11,7 +12,7 @@ node(){
 			ls -lart
 
 		"""
-		sh "${MAVEN_HOME}/bin/mvn clean package"
+		sh "mvn clean package"
 		sh """
 			ls -lart target
 
