@@ -1,5 +1,5 @@
 node(){
-	tools { 
+	tool { 
       maven 'MAVEN_HOME' 
       jdk 'JAVA_HOME' 
     }
