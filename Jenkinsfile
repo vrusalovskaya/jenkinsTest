@@ -12,7 +12,7 @@ node(){
 			ls -lart
 
 		"""
-		sh "mvn clean package"
+		sh "/opt/apache-maven-3.9.9/bin/mvn clean package"
 		sh """
 			ls -lart target
 
