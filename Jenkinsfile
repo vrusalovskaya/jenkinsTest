@@ -12,13 +12,9 @@ node(){
 			ls -lart
 
 		"""
-		sh "/opt/apache-maven-3.9.9/bin/mvn clean package"
+		sh "/opt/apache-maven-3.9.9/bin/mvn clean package -Dmaven.test.skip"
 		sh """
 			ls -lart target
-
-		"""
-		sh """
-			ls -lart
 
 		"""
 	}
@@ -28,7 +24,7 @@ node(){
                     def response = httpRequest acceptType: 'APPLICATION_JSON',
                                               url: 'http://192.168.100.12:8080/manager/text/deploy?path=/test123',
                                               authentication: '8b3caa11-ac73-4d6b-b1e6-8183fc456db8',
-                                              requestBody: sh(script: "cat target/jenkinstest-0.0.1-SNAPSHOT.jar", returnStdout: true)
+                                              requestBody: sh(script: "cat target/jenkinstest-0.0.1-SNAPSHOT.war", returnStdout: true)
                     echo "Response: ${response}"
                 }
 	}
