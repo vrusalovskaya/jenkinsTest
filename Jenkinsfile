@@ -9,7 +9,10 @@ node(){
 	stage('Build Automation'){
 		sh """
 			ls -lart
-			mvn clean install
+
+		"""
+		sh "${MAVEN_HOME}/bin/mvn clean package"
+		sh """
 			ls -lart target
 
 		"""
